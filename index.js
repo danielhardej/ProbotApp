@@ -5,7 +5,7 @@
 module.exports = (app) => {
   // Your code here
   app.log.info("Yay, the app was loaded!");
-  console.log("Yay, the app was loaded!");
+  context.log("Yay, the app was loaded!");
   app.on("issues.opened", async (context) => {
     const issueComment = context.issue({
       body: "Thanks for opening this issue!",
@@ -15,6 +15,6 @@ module.exports = (app) => {
     });
     context.octokit.issues.addAssignees(issueAssignees);
     context.octokit.issues.createComment(issueComment);
-    console.log(`Issue opened: ${context.issue}, Assignees added: ${issueAssignees}, Comment created: ${issueComment}`);
+    context.log(`Issue opened: ${context.issue}, Assignees added: ${issueAssignees}, Comment created: ${issueComment}`);
   });
 };
