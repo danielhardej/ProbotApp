@@ -4,4 +4,4 @@ const {
 } = require("@probot/adapter-azure-functions");
 const app = require("../index.js");
 
-module.exports = createAzureFunction(app, { probot: createProbot() });
+module.exports = createAzureFunction((context) => app(context), { probot: createProbot() });
