@@ -13,4 +13,5 @@ module.exports = async function (app, context) {
     app.log.info(`App log: Issue opened: ${context.payload.issue.number}, Assignees added: ${issueAssignees.assignees}, Comment created: ${issueComment.body}`);
     context.log(`Context log: Issue opened: ${context.payload.issue.number}, Assignees added: ${issueAssignees.assignees}, Comment created: ${issueComment.body}`);
   });
+  context
 };
