@@ -1,20 +1,15 @@
-/**
- * This is the main entrypoint to your Probot app
- * @param {import('probot').Probot} app
- */
-module.exports = (app, context) => {
+module.exports = (app) => {
   app.log.info("Yay, the app was loaded!");
-  context.log("Yay, the app was loaded!");
-  app.on("issues.opened", async (probotContext) => {
-    const issueComment = probotContext.issue({
+
+  app.on("issues.opened", async (context) => {
+    const issueComment = context.issue({
       body: "Thanks for opening this issue!",
     });
-    const issueAssignees = probotContext.issue({
+    const issueAssignees = context.issue({
       assignees: "danielhardej",
     });
-    probotContext.octokit.issues.addAssignees(issueAssignees);
-    probotContext.octokit.issues.createComment(issueComment);
-
-    context.log(`Issue opened: ${probotContext.issue}, Assignees added: ${issueAssignees}, Comment created: ${issueComment}`);
+    context.octokit.issues.addAssignees(issueAssignees);
+    context.octokit.issues.createComment(issueComment);
+    app.log.info(`Issue opened: ${context.payload.issue.number}, Assignees added: ${issueAssignees.assignees}, Comment created: ${issueComment.body}`);
   });
 };
