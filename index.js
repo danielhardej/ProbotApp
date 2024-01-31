@@ -1,8 +1,7 @@
-module.exports = (app, azureContext) => {
+module.exports = (app) => {
   app.log.info("Yay, the app was loaded!");
-  azureContext.log("Yay, the app was loaded!");
-
   app.on("issues.opened", async (context) => {
+    context.log("Yay, the app was loaded and an issue was opened!");
     const issueComment = context.issue({
       body: "Thanks for opening this issue!",
     });
@@ -12,6 +11,6 @@ module.exports = (app, azureContext) => {
     context.octokit.issues.addAssignees(issueAssignees);
     context.octokit.issues.createComment(issueComment);
     app.log.info(`Issue opened: ${context.payload.issue.number}, Assignees added: ${issueAssignees.assignees}, Comment created: ${issueComment.body}`);
-    azureContext.log(`Issue opened: ${context.payload.issue.number}, Assignees added: ${issueAssignees.assignees}, Comment created: ${issueComment.body}`);
+    context.log(`Issue opened: ${context.payload.issue.number}, Assignees added: ${issueAssignees.assignees}, Comment created: ${issueComment.body}`);
   });
 };
