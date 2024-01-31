@@ -16,8 +16,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "probot": "^12.2.4",
-    "@probot/adapter-azure-functions": "1.1.0"
+    "@probot/adapter-azure-functions": "^1.1.0",
+    "probot": "^12.2.4"
   },
   "devDependencies": {
     "@azure/functions": "4.1.0",
